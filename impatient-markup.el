@@ -51,7 +51,7 @@
   "Open live html when markup buffer is opened.")
 
 (defvar impatient-markup-pandoc "pandoc"
-  "pandoc executable.")
+  "Path to pandoc executable.")
 
 (defvar impatient-markup-html-buffer "impatient-markup.html"
   "Temporary buffer to hold html.")
@@ -76,8 +76,9 @@
   (save-buffer impatient-markup-buffer)
   (with-current-buffer (get-buffer impatient-markup-html-buffer)
     (erase-buffer)
-    (insert (shell-command-to-string 
-             (format "%s %s" impatient-markup-pandoc impatient-markup-buffer)))))
+    (let ((inhibit-modification-hooks nil))
+      (insert (shell-command-to-string 
+               (format "%s %s" impatient-markup-pandoc impatient-markup-buffer))))))
 
 
 (define-minor-mode impatient-markup
@@ -89,14 +90,24 @@
         (setq impatient-markup-buffer (buffer-file-name))
         (with-current-buffer (current-buffer)
           (add-hook 'after-change-functions 'impatient-markup-update nil t))
-        (impatient-markup-serve-file))))
+        ;; (impatient-markup-update nil)
+        (impatient-markup-serve-file)
+        )))
 
 
 (defun impatient-markup-enable ()
   "Enable impatient-markup mode."
+  ;; (interactive)
   (httpd-start)
   (add-hook 'markdown-mode-hook 'impatient-markup)
   (add-hook 'rst-mode-hook 'impatient-markup))
+
+;; (defun impatient-markup-disable ()
+;;   "Disable impatient-markup mode."
+;;   (interactive)
+
+;;   )
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
