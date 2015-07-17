@@ -1,13 +1,16 @@
 # Impatient Markup
-Preview markup as You type...
 
-
-# Demo
-
+Convert & preview markup(md, rst) to html on the fly!
 
 # Install
 
-### Manual
+## Step 1: Install Pandoc
+
+
+## Step 2: Install impatient-markup
+
+
+### From Github
 
 Clone repo to your system
 
@@ -18,12 +21,19 @@ Load impatient-markup.el and enable impatient markup
     (load-file "/path/to/impatient-markup.el")
     (impatient-markup-enable)
 
+This enable impatient-markup in `markdown` & `rst-mode`.
 
-# Todo
+You can enable it in other modes using hook.
 
-Multiple files support
+    (add-hook 'impatient-markup 'markdown-mode)
 
-Other markup formats
+
+
+
+
+
+
+
 
 
 
