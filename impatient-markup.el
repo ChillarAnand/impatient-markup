@@ -1,25 +1,28 @@
-;;; impatient-markup.el --- 
+;;; impatient-markup.el --- Convert & preview markup(md, rst) to html on the fly!
 ;; 
 ;; Filename: impatient-markup.el
-;; Description: 
-;; Author: anand
-;; Maintainer: 
+;; Description: Convert & preview markup(md, rst) to html on the fly! — Edit
+;; Author: Anand Reddy Pandikunta
+;; Maintainer: Anand Reddy Pandikunta
 ;; Created: Tue Jun 16 18:25:56 2015 (+0530)
-;; Version: 
+;; Version: 0.1
 ;; Package-Requires: ()
 ;; Last-Updated: 
 ;;           By: 
 ;;     Update #: 0
-;; URL: 
-;; Doc URL: 
-;; Keywords: 
+;; URL: https://github.com/ChillarAnand/impatient-markup
+;; Doc URL: https://github.com/ChillarAnand/impatient-markup/blob/master/README.md
+;; Keywords: markup markdown restructured-text
 ;; Compatibility: 
 ;; 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
 ;;; Commentary: 
 ;; 
+;; impatient-markup.el - Convert & preview markup(md, rst) to html on the fly!
 ;; 
+;; This package converts markup(md, rst) to html and shows a live preview 
+;; as You modify it.
 ;; 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
@@ -90,25 +93,17 @@
         (setq impatient-markup-buffer (buffer-file-name))
         (with-current-buffer (current-buffer)
           (add-hook 'after-change-functions 'impatient-markup-update nil t))
-        ;; (impatient-markup-update nil)
-        (impatient-markup-serve-file)
-        )))
+        (impatient-markup-serve-file))))
 
 
 (defun impatient-markup-enable ()
   "Enable impatient-markup mode."
-  ;; (interactive)
+  (interactive)
   (httpd-start)
   (add-hook 'markdown-mode-hook 'impatient-markup)
   (add-hook 'rst-mode-hook 'impatient-markup))
 
-;; (defun impatient-markup-disable ()
-;;   "Disable impatient-markup mode."
-;;   (interactive)
 
-;;   )
-
-
-
+(provide 'impatient-markup)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; impatient-markup.el ends here
