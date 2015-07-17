@@ -2,9 +2,17 @@
 
 Convert & preview markup(md, rst) to html on the fly!
 
+
+
 # Install
 
 ## Step 1: Install Pandoc
+
+If you are using ubuntu, you can install it using
+
+    sudo apt-get install pandoc
+
+For other operating systms pelase visit [Pandoc installation guide](http://pandoc.org/installing.html)
 
 
 ## Step 2: Install impatient-markup

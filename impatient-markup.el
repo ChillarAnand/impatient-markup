@@ -98,7 +98,6 @@
 
 (defun impatient-markup-enable ()
   "Enable impatient-markup mode."
-  (interactive)
   (httpd-start)
   (add-hook 'markdown-mode-hook 'impatient-markup)
   (add-hook 'rst-mode-hook 'impatient-markup))
